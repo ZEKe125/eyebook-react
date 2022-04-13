@@ -2,6 +2,7 @@ import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import "./Main.css";
 import Book from "./book";
+import  Button  from "@mui/material/Button";
 
 function MainApp() {
 	return (
@@ -15,6 +16,9 @@ function MainApp() {
 					</div>
 				)}
 			</WebGazeContext.Consumer>
+			<Button href="/" variant="outlined" size="large">
+				Go Back
+			</Button>
 			<Book />
 		</div>
 	);
