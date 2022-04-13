@@ -8,8 +8,8 @@ import Script from "react-load-script";
 window.saveDataAcrossSessions = true;
 
 // Constants for determining when to scroll up or down
-const TOP_CUTOFF = window.innerWidth / 3;
-const BOTTOM_CUTOFF = window.innerWidth / 3;
+const TOP_CUTOFF = window.innerHeight / 3;
+const BOTTOM_CUTOFF = window.innerHeight / 3;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
