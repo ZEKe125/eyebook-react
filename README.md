@@ -4,11 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
-### `npm install`
-
-
 ### ` git clone https://github.com/ZEKe125/eyebook-react.git`
+
+In the project directory, you can run:
+
+### `npm install`
 
 ### `npm start`
 
