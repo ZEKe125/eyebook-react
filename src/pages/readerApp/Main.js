@@ -1,8 +1,12 @@
 import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import "./Main.css";
-import Book from "./book";
+
 import  Button  from "@mui/material/Button";
+import SinglePagePDFViewer from "../../pdf/SinglePage";
+// import AllPagesPDFViewer from "../../pdf/AllPages";
+import stoic_book from "../../books/stoic.pdf";
+// import { Paper } from "@mui/material";
 
 function MainApp() {
 	return (
@@ -19,7 +23,9 @@ function MainApp() {
 			<Button href="/" variant="outlined" size="large">
 				Go Back
 			</Button>
-			<Book />
+			
+			<SinglePagePDFViewer pdf= {stoic_book} />
+			{/* <AllPagesPDFViewer pdf = {stoic_book}/> */}
 		</div>
 	);
 }

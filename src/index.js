@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GazeApp from "./GazeApp";
-import Login from "./Login";
-import MainMenu from "./MainMenu";
+import GazeApp from "./pages/readerApp/GazeApp";
+import Login from "./pages/login/Login";
+import MainMenu from "./pages/mainmenu/MainMenu";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
