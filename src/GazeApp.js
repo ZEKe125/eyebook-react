@@ -1,7 +1,6 @@
 import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import MainApp from "./Main";
-// import { useHistory } from 'react-router-dom';
 
 import "./App.css";
 import Script from "react-load-script";
@@ -9,17 +8,13 @@ import Script from "react-load-script";
 window.saveDataAcrossSessions = true;
 
 // Constants for determining when to scroll up or down
-const TOP_CUTOFF = window.innerHeight - window.innerHeight / 4;
-const BOTTOM_CUTOFF = window.innerHeight / 4;
-const LEFT_CUTOFF = window.innerWidth / 4;
-const RIGHT_CUTOFF = window.innerWidth - window.innerWidth / 4;
+const TOP_CUTOFF = window.innerWidth / 3;
+const BOTTOM_CUTOFF = window.innerWidth / 3;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
 let lookDirection = null;
 let startLookTimer = Number.POSITIVE_INFINITY;
-let startLookTimer2 = Number.POSITIVE_INFINITY;
-let lookDirection2 = null;
 
 function openFile() {
 	const framebook = document.querySelector("iframe");
@@ -59,12 +54,6 @@ function openFile() {
 
 declare var webgazer;
 
-const cutoffs = [
-	{ top: TOP_CUTOFF },
-	{ bottom: BOTTOM_CUTOFF },
-	{ left: LEFT_CUTOFF },
-	{ right: RIGHT_CUTOFF },
-];
 class WebGazeLoader extends React.Component {
 	constructor() {
 		super();
@@ -80,19 +69,15 @@ class WebGazeLoader extends React.Component {
 					return;
 				}
 				this.setState({ context: webgazer.util.bound(data) });
-				// console.log(cutoffs);
-
+				console.log(TOP_CUTOFF);
+				console.log(BOTTOM_CUTOFF);
 				if (data.y > TOP_CUTOFF && lookDirection !== "TOP") {
 					startLookTimer = timestamp;
 					lookDirection = "TOP";
 				} else if (data.y < BOTTOM_CUTOFF && lookDirection !== "BOTTOM") {
 					startLookTimer = timestamp;
 					lookDirection = "BOTTOM";
-				} else if (
-					data.y >= BOTTOM_CUTOFF &&
-					data.y <= TOP_CUTOFF
-					//  || (data.x >= LEFT_CUTOFF && data.x <= RIGHT_CUTOFF)
-				) {
+				} else if (data.y >= BOTTOM_CUTOFF && data.y <= TOP_CUTOFF) {
 					startLookTimer = Number.POSITIVE_INFINITY;
 					lookDirection = null;
 				}
@@ -100,12 +85,10 @@ class WebGazeLoader extends React.Component {
 				// Looking to see if direcion is found
 				if (startLookTimer + LOOK_DELAY < timestamp) {
 					if (lookDirection === "TOP") {
-						console.log("scrolling up");
 						window.scrollBy({ top: 300, behavior: "smooth" });
 						startLookTimer = Number.POSITIVE_INFINITY;
 						lookDirection = null;
 					} else if (lookDirection === "BOTTOM") {
-						console.log("scrolling down");
 						window.scrollBy({ top: -300, behavior: "smooth" });
 						startLookTimer = Number.POSITIVE_INFINITY;
 						lookDirection = null;
@@ -113,48 +96,6 @@ class WebGazeLoader extends React.Component {
 				}
 			})
 			.begin();
-
-		webgazer.showVideoPreview(true).showPredictionPoints(true);
-	}
-
-	handleScriptLoad2() {
-		webgazer
-			.setGazeListener((data, timestamp) => {
-				if (data == null) {
-					return;
-				} else if (
-					data.x < LEFT_CUTOFF &&
-					lookDirection2 !== "LEFT" &&
-					lookDirection2 !== "RESET"
-				) {
-					console.log('looking left');
-					startLookTimer2 = timestamp;
-					lookDirection2 = "LEFT";
-				} else if (
-					data.x > RIGHT_CUTOFF &&
-					lookDirection2 !== "RIGHT" &&
-					lookDirection2 !== "RESET"
-				) {
-					startLookTimer2 = timestamp;
-					lookDirection2 = "RIGHT";
-				} else if (data.x >= LEFT_CUTOFF && data.x <= RIGHT_CUTOFF) {
-					startLookTimer2 = Number.POSITIVE_INFINITY;
-					lookDirection2 = null;
-				}
-
-				if (startLookTimer2 + LOOK_DELAY < timestamp) {
-					if (lookDirection === "LEFT") {
-						window.history.back();
-					} else if (lookDirection === "RIGHT") {
-					}
-				}
-
-				startLookTimer2 = Number.POSITIVE_INFINITY
-				lookDirection2 = "RESET"
-				
-			})
-			.begin();
-			webgazer.showVideoPreview(false).showPredictionPoints(true);
 	}
 
 	handleScriptError() {
@@ -167,7 +108,6 @@ class WebGazeLoader extends React.Component {
 				<Script
 					url="https://webgazer.cs.brown.edu/webgazer.js"
 					onLoad={this.handleScriptLoad.bind(this)}
-					onLoad={this.handleScriptLoad2.bind(this)}
 					onError={this.handleScriptError.bind(this)}
 				/>
 				<MainApp />
