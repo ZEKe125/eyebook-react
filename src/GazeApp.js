@@ -70,6 +70,7 @@ class WebGazeLoader extends React.Component {
 					return;
 				}
 				this.setState({ context: webgazer.util.bound(data) });
+<<<<<<< Updated upstream
 
         if (data.y > TOP_CUTOFF && lookDirection !== "TOP") {
           startLookTimer = timestamp;
@@ -94,6 +95,33 @@ class WebGazeLoader extends React.Component {
             lookDirection = null;
           }
         }
+=======
+				console.log(TOP_CUTOFF);
+				console.log(BOTTOM_CUTOFF);
+				if (data.y > TOP_CUTOFF && lookDirection !== "TOP") {
+					startLookTimer = timestamp;
+					lookDirection = "TOP";
+				} else if (data.y < BOTTOM_CUTOFF && lookDirection !== "BOTTOM") {
+					startLookTimer = timestamp;
+					lookDirection = "BOTTOM";
+				} else if (data.y >= BOTTOM_CUTOFF && data.y <= TOP_CUTOFF) {
+					startLookTimer = Number.POSITIVE_INFINITY;
+					lookDirection = null;
+				}
+
+				// Looking to see if direcion is found
+				if (startLookTimer + LOOK_DELAY < timestamp) {
+					if (lookDirection === "TOP") {
+						window.scrollBy({ top: 300, behavior: "smooth" });
+						startLookTimer = Number.POSITIVE_INFINITY;
+						lookDirection = null;
+					} else if (lookDirection === "BOTTOM") {
+						window.scrollBy({ top: -300, behavior: "smooth" });
+						startLookTimer = Number.POSITIVE_INFINITY;
+						lookDirection = null;
+					}
+				}
+>>>>>>> Stashed changes
 			})
 			.begin();
 	}
