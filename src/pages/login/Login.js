@@ -39,14 +39,14 @@ const theme = createTheme();
 
 var pageID = 'loginPage';
 	
-export default function SignIn() {
+export default function LogIn() {
 	
 	const dispatch = useDispatch();
   	dispatch(set(pageID));
 
 	
-	const page = 'login';
-	console.log(page);
+	// const page = 'login';
+	// console.log(page);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);

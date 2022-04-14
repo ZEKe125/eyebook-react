@@ -9,7 +9,7 @@ import stoic_book from "../../books/stoic.pdf";
 import { useDispatch } from "react-redux";
 import { set } from "../../features/PageID/PageIDSlice";
 
-const thisPageID = 'MainApp';
+const thisPageID = 'MainAppPage';
 
 
 function MainApp() {
@@ -24,13 +24,14 @@ function MainApp() {
 			
 
 			
-			{/* <WebGazeContext.Consumer>
+			<WebGazeContext.Consumer>
 				{(value) => (
 					<div>
-						{value.x} {value.y}
+						{'coor x: ' + value.x} ||
+						{'coor y: ' + value.y}
 					</div>
 				)}
-			</WebGazeContext.Consumer> */}
+			</WebGazeContext.Consumer>
 			<Button href="/" variant="outlined" size="large">
 				Go Back
 			</Button>
@@ -40,5 +41,6 @@ function MainApp() {
 		</div>
 	);
 }
+
 
 export default MainApp;
