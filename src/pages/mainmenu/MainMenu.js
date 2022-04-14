@@ -1,5 +1,5 @@
 import React from "react";
-import DenseAppBar from "./AppBar";
+import DenseAppBar from "../resourses/AppBar"
 import { Button, } from "@mui/material";
 import { Input } from "@mui/material";
 

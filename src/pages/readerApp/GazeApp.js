@@ -2,55 +2,26 @@ import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import MainApp from "./Main";
 
-import "./App.css";
+// import "./App.css";
 import Script from "react-load-script";
 
 window.saveDataAcrossSessions = true;
 
 // Constants for determining when to scroll up or down
-const TOP_CUTOFF = window.innerHeight / 3;
-const BOTTOM_CUTOFF = window.innerHeight / 3;
+const TOP_CUTOFF = window.innerHeight / 4;
+const BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
+const LEFT_CUTOFF = window.innerWidth / 4;
+const RiGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
+const BACK_LOOK_DELAY = 2000;
 let lookDirection = null;
 let startLookTimer = Number.POSITIVE_INFINITY;
+let sideLookDirection = null;
+let startSideLookTimer = Number.POSITIVE_INFINITY;
 
-function openFile() {
-	const framebook = document.querySelector("iframe");
-	const filebook = document.querySelector("input[type=file]").files[0];
-	const reader = new FileReader();
 
-	reader.addEventListener(
-		"load",
-		function () {
-			framebook.src = reader.result;
-		},
-		false
-	);
-
-	if (filebook) {
-		reader.readAsDataURL(filebook);
-	}
-}
-
-// var btn = document.getElementById("main");
-// // const BUTTON_CUTOFF = btn.style.width;
-
-// // function goBack(data, timestamp) {
-// //   // Function for going back up to the top of the screen when looking at the button
-// //   if (data.y == BUTTON_CUTOFF && lookDirection !== "BUTTON") {
-// //     startLookTimer = timestamp;
-// //     lookDirection = "BUTTON";
-// //   }
-// //   if (startLookTimer + LOOK_DELAY < timestamp) {
-// //     if (lookDirection === "BUTTON") {
-// //       window.scrollTo(0, 0, { behavior: "smooth" });
-// //       startLookTimer = Number.POSITIVE_INFINITY;
-// //       lookDirection = null;
-// //     }
-// //   }
-// // }
 
 declare var webgazer;
 
@@ -69,17 +40,30 @@ class WebGazeLoader extends React.Component {
 					return;
 				}
 				this.setState({ context: webgazer.util.bound(data) });
-				console.log(TOP_CUTOFF);
-				console.log(BOTTOM_CUTOFF);
+				// console.log(TOP_CUTOFF);
+				// console.log(BOTTOM_CUTOFF);
 				if (data.y > TOP_CUTOFF && lookDirection !== "TOP") {
+					console.log("top");
 					startLookTimer = timestamp;
 					lookDirection = "TOP";
 				} else if (data.y < BOTTOM_CUTOFF && lookDirection !== "BOTTOM") {
+					console.log("bottom");
 					startLookTimer = timestamp;
 					lookDirection = "BOTTOM";
+				}else if(data.x < LEFT_CUTOFF && sideLookDirection !== "LEFT"){
+						console.log("left");
+						startSideLookTimer = timestamp;
+						sideLookDirection = "LEFT";
 				} else if (data.y >= BOTTOM_CUTOFF && data.y <= TOP_CUTOFF) {
 					startLookTimer = Number.POSITIVE_INFINITY;
 					lookDirection = null;
+				}
+
+				if (startSideLookTimer + BACK_LOOK_DELAY < timestamp) {
+					if (sideLookDirection === "LEFT") {
+						window.history.back();
+
+					}
 				}
 
 				// Looking to see if direcion is found
