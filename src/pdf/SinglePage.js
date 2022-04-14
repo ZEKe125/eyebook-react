@@ -21,7 +21,7 @@ export default function SinglePage(props) {
   }
 
   function nextPage() {
-    changePage(1);
+    changePage(2);
   }
 
   const { pdf } = props;
@@ -34,6 +34,7 @@ export default function SinglePage(props) {
         onLoadSuccess={onDocumentLoadSuccess}
       >
         <Page pageNumber={pageNumber} />
+        <Page pageNumber={pageNumber+1} />
       </Document>
       <div>
         <p>
