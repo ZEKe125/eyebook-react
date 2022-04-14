@@ -57,11 +57,15 @@ class WebGazeLoader extends React.Component {
 				} else if (data.y >= BOTTOM_CUTOFF && data.y <= TOP_CUTOFF) {
 					startLookTimer = Number.POSITIVE_INFINITY;
 					lookDirection = null;
+				}else if (data.x >= LEFT_CUTOFF ) {
+					startSideLookTimer = Number.POSITIVE_INFINITY;
+					sideLookDirection = null;
 				}
 
 				if (startSideLookTimer + BACK_LOOK_DELAY < timestamp) {
 					if (sideLookDirection === "LEFT") {
 						window.history.back();
+						sideLookDirection = "RESET";
 
 					}
 				}
