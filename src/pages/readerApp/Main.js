@@ -1,5 +1,6 @@
 import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
+// import { CurrentPageContext } from "../resourses/CurrentPageContext";
 import "./Main.css";
 
 import  Button  from "@mui/material/Button";
@@ -9,10 +10,16 @@ import stoic_book from "../../books/stoic.pdf";
 // import { Paper } from "@mui/material";
 
 function MainApp() {
+	const page = 'reader';
+	console.log(page);
+	
 	return (
 		<div id="container">
 			<h1>New EyeBook Reader</h1>
 			<h2>the revolution has begun</h2>
+			
+
+			
 			<WebGazeContext.Consumer>
 				{(value) => (
 					<div>

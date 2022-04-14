@@ -1,9 +1,12 @@
 import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import MainApp from "./Main";
+import { currentPage } from "../resourses/CurrentPageContext";
+// import { CurrentPageContext } from "../resourses/CurrentPageContext";
 
 // import "./App.css";
 import Script from "react-load-script";
+import { current } from "@reduxjs/toolkit";
 
 window.saveDataAcrossSessions = true;
 
@@ -11,7 +14,7 @@ window.saveDataAcrossSessions = true;
 const TOP_CUTOFF = window.innerHeight / 4;
 const BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
 const LEFT_CUTOFF = window.innerWidth / 4;
-const RiGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
+const RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
@@ -33,7 +36,7 @@ class WebGazeLoader extends React.Component {
 		};
 	}
 
-	handleScriptLoad() {
+	handleScriptLoad(hi) {
 		webgazer
 			.setGazeListener((data, timestamp) => {
 				if (data == null) {
@@ -106,6 +109,8 @@ class WebGazeLoader extends React.Component {
 WebGazeLoader.contextType = WebGazeContext;
 
 function GazeApp() {
+	// currentPage = 'reader';
+	console.log(currentPage);
 	return (
 		<div className="App">
 			<WebGazeLoader />
