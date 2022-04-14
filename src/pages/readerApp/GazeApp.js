@@ -15,7 +15,7 @@ const RiGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
-const BACK_LOOK_DELAY = 2000;
+const SIDE_LOOK_DELAY = 2000;
 let lookDirection = null;
 let startLookTimer = Number.POSITIVE_INFINITY;
 let sideLookDirection = null;
@@ -62,7 +62,7 @@ class WebGazeLoader extends React.Component {
 					sideLookDirection = null;
 				}
 
-				if (startSideLookTimer + BACK_LOOK_DELAY < timestamp) {
+				if (startSideLookTimer + SIDE_LOOK_DELAY < timestamp) {
 					if (sideLookDirection === "LEFT") {
 						window.history.back();
 						sideLookDirection = "RESET";
