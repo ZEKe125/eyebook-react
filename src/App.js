@@ -2,12 +2,14 @@ import "./App.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment, set } from "./features/PageID/PageIDSlice";
+import {  set } from "./features/PageID/PageIDSlice";
+
+var pageID = 'appPage';
 
 function App() {
-	const id = useSelector((state) => state.PageID.id);
+	// pageID = useSelector((state) => state.PageID.id);
 	const dispatch = useDispatch();
-  dispatch(set(5))
+  	dispatch(set(pageID))
 
 	return (
 		<div className="App">
@@ -21,21 +23,21 @@ function App() {
 				<Link to="/login">Login</Link> | <Link to="/MainMenu">Main-Menu</Link> |{" "}
 				<Link to="/GazeApp">GazeApp</Link>
 			</nav>
-			<div>
+			{/* <div>
 				<div>
 					<button
 						aria-label="Increment value"
 						onClick={() => dispatch(increment())}>
 						Increment
 					</button>
-					<span>{id}</span>
+					<span>| |  pageID : {pageID} | |</span>
 					<button
 						aria-label="Decrement value"
 						onClick={() => dispatch(decrement())}>
 						Decrement
 					</button>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 }

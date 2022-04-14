@@ -12,7 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { CurrentPageContext } from "../resourses/CurrentPageContext";
+import { useDispatch } from "react-redux";
+import { set } from "../../features/PageID/PageIDSlice";
+
 
 function Copyright(props) {
 	return (
@@ -33,8 +35,14 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
 
+
+var pageID = 'loginPage';
+	
+export default function SignIn() {
+	
+	const dispatch = useDispatch();
+  	dispatch(set(pageID));
 
 	
 	const page = 'login';

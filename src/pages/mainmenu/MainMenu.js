@@ -2,12 +2,15 @@ import React from "react";
 import DenseAppBar from "../resourses/AppBar"
 import { Button, } from "@mui/material";
 import { Input } from "@mui/material";
+import {  useDispatch } from "react-redux";
+import { set } from "../../features/PageID/PageIDSlice";
 // import { CurrentPageContext } from "../resourses/CurrentPageContext";
 
 export default function MainMenu() {
 
-	const page = 'mainmenu';
-	console.log(page);
+	var pageID = 'MainMenuPage';
+	const dispatch = useDispatch();
+  	dispatch(set(pageID));
 
 	return (
 		<>

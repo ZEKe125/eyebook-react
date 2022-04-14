@@ -1,12 +1,10 @@
 import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import MainApp from "./Main";
-import { currentPage } from "../resourses/CurrentPageContext";
-// import { CurrentPageContext } from "../resourses/CurrentPageContext";
-
-// import "./App.css";
+import { useSelector} from "react-redux";
+// import { set } from "../../features/PageID/PageIDSlice";
 import Script from "react-load-script";
-import { current } from "@reduxjs/toolkit";
+
 
 window.saveDataAcrossSessions = true;
 
@@ -14,7 +12,7 @@ window.saveDataAcrossSessions = true;
 const TOP_CUTOFF = window.innerHeight / 4;
 const BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
 const LEFT_CUTOFF = window.innerWidth / 4;
-const RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
+// const RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
@@ -23,6 +21,9 @@ let lookDirection = null;
 let startLookTimer = Number.POSITIVE_INFINITY;
 let sideLookDirection = null;
 let startSideLookTimer = Number.POSITIVE_INFINITY;
+
+
+var pageID;
 
 
 
@@ -101,7 +102,7 @@ class WebGazeLoader extends React.Component {
 					onLoad={this.handleScriptLoad.bind(this)}
 					onError={this.handleScriptError.bind(this)}
 				/>
-				<MainApp />
+				{/* <MainApp /> */}
 			</WebGazeContext.Provider>
 		);
 	}
@@ -109,8 +110,9 @@ class WebGazeLoader extends React.Component {
 WebGazeLoader.contextType = WebGazeContext;
 
 function GazeApp() {
-	// currentPage = 'reader';
-	console.log(currentPage);
+	pageID = useSelector((state) => state.PageID.id);
+	console.log('pageid: ' + pageID + ' at gazeapp')
+
 	return (
 		<div className="App">
 			<WebGazeLoader />
