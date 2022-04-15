@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {  set } from "./features/PageID/PageIDSlice";
+import GazeApp from "./pages/readerApp/GazeApp";
 
 var pageID = 'appPage';
 
@@ -13,6 +14,7 @@ function App() {
 
 	return (
 		<div className="App">
+			{/* <GazeApp/> */}
 			<h1>Gazer Project - Debug</h1>
 			<p>User should not be able to see this page!</p>
 			<nav

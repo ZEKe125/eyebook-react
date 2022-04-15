@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf";
 // import stoic_book from "./books/stoic.pdf";
-// import { Paper } from "@mui/material";
+import  Button from "@mui/material/Button";
 
 export default function SinglePage(props) {
   const [numPages, setNumPages] = useState(null);
@@ -40,16 +40,18 @@ export default function SinglePage(props) {
         <p>
           Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
         </p>
-        <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
+        <Button variant = "outlined" type="button" disabled={pageNumber <= 1} onClick={previousPage}>
           Previous
-        </button>
-        <button
+        </Button>
+        <Button
+          id = "nextPage"
+          variant = "outlined"
           type="button"
           disabled={pageNumber >= numPages}
           onClick={nextPage}
         >
-          Next
-        </button>
+          Next (Focus Right)
+        </Button>
       </div>
     </>
   );

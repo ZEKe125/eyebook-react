@@ -11,7 +11,7 @@ window.saveDataAcrossSessions = true;
 var TOP_CUTOFF = window.innerHeight / 4;
 var BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
 var LEFT_CUTOFF = window.innerWidth / 4;
-const RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
+var RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
@@ -43,11 +43,11 @@ class WebGazeLoader extends React.Component {
 				// console.log(TOP_CUTOFF);
 				// console.log(BOTTOM_CUTOFF);
 				if (data.y > TOP_CUTOFF && lookDirection !== "TOP") {
-					console.log("looking at top");
+					// console.log("looking at top");
 					startLookTimer = timestamp;
 					lookDirection = "TOP";
 				} else if (data.y < BOTTOM_CUTOFF && lookDirection !== "BOTTOM") {
-					console.log("looking at bottom");
+					// console.log("looking at bottom");
 					startLookTimer = timestamp;
 					lookDirection = "BOTTOM";
 				}
@@ -55,8 +55,8 @@ class WebGazeLoader extends React.Component {
 					console.log("looking left");
 					startSideLookTimer = timestamp;
 					sideLookDirection = "LEFT";
-				}else if (data.x < RIGHT_CUTOFF && sideLookDirection !== "RIGHT") {
-					console.log("looking left");
+				}else if (data.x > RIGHT_CUTOFF && sideLookDirection !== "RIGHT") {
+					console.log("looking right");
 					startSideLookTimer = timestamp;
 					sideLookDirection = "RIGHT";
 				}
@@ -64,7 +64,7 @@ class WebGazeLoader extends React.Component {
 					startLookTimer = Number.POSITIVE_INFINITY;
 					lookDirection = null;
 				}
-				if (data.x >= LEFT_CUTOFF) {
+				if (data.x >= LEFT_CUTOFF && data.x < RIGHT_CUTOFF) {
 					startSideLookTimer = Number.POSITIVE_INFINITY;
 					sideLookDirection = null;
 				}
@@ -72,6 +72,12 @@ class WebGazeLoader extends React.Component {
 				if (startSideLookTimer + SIDE_LOOK_DELAY < timestamp) {
 					if (sideLookDirection === "LEFT") {
 						window.history.back();
+						sideLookDirection = "RESET";
+					}
+					if (sideLookDirection === "RIGHT") {
+						// add commands
+						console.log('should click here')
+						document.getElementById("nextPage").click();
 						sideLookDirection = "RESET";
 					}
 				}
