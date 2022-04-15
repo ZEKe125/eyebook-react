@@ -12,6 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useDispatch } from "react-redux";
+import { set } from "../../features/PageID/PageIDSlice";
+
 
 function Copyright(props) {
 	return (
@@ -32,7 +35,18 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+
+
+var pageID = 'loginPage';
+	
+export default function LogIn() {
+	
+	const dispatch = useDispatch();
+  	dispatch(set(pageID));
+
+	
+	// const page = 'login';
+	// console.log(page);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -46,6 +60,7 @@ export default function SignIn() {
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
+				
 				<Box
 					sx={{
 						marginTop: 8,

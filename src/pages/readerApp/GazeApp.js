@@ -1,27 +1,27 @@
 import React from "react";
 import { WebGazeContext } from "./WebGazeContext";
 import MainApp from "./Main";
-
-// import "./App.css";
+import { useSelector } from "react-redux";
+// import { set } from "../../features/PageID/PageIDSlice";
 import Script from "react-load-script";
 
 window.saveDataAcrossSessions = true;
 
 // Constants for determining when to scroll up or down
-const TOP_CUTOFF = window.innerHeight / 4;
-const BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
-const LEFT_CUTOFF = window.innerWidth / 4;
-const RiGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
+var TOP_CUTOFF = window.innerHeight / 4;
+var BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
+var LEFT_CUTOFF = window.innerWidth / 4;
+var RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
-const BACK_LOOK_DELAY = 2000;
+const SIDE_LOOK_DELAY = 2000;
 let lookDirection = null;
 let startLookTimer = Number.POSITIVE_INFINITY;
 let sideLookDirection = null;
 let startSideLookTimer = Number.POSITIVE_INFINITY;
 
-
+var pageID;
 
 declare var webgazer;
 
@@ -43,43 +43,60 @@ class WebGazeLoader extends React.Component {
 				// console.log(TOP_CUTOFF);
 				// console.log(BOTTOM_CUTOFF);
 				if (data.y > TOP_CUTOFF && lookDirection !== "TOP") {
-					console.log("top");
+					// console.log("looking at top");
 					startLookTimer = timestamp;
 					lookDirection = "TOP";
 				} else if (data.y < BOTTOM_CUTOFF && lookDirection !== "BOTTOM") {
-					console.log("bottom");
+					// console.log("looking at bottom");
 					startLookTimer = timestamp;
 					lookDirection = "BOTTOM";
-				}else if(data.x < LEFT_CUTOFF && sideLookDirection !== "LEFT"){
-						console.log("left");
-						startSideLookTimer = timestamp;
-						sideLookDirection = "LEFT";
-				} else if (data.y >= BOTTOM_CUTOFF && data.y <= TOP_CUTOFF) {
+				}
+				if (data.x < LEFT_CUTOFF && sideLookDirection !== "LEFT") {
+					console.log("looking left");
+					startSideLookTimer = timestamp;
+					sideLookDirection = "LEFT";
+				}else if (data.x > RIGHT_CUTOFF && sideLookDirection !== "RIGHT") {
+					console.log("looking right");
+					startSideLookTimer = timestamp;
+					sideLookDirection = "RIGHT";
+				}
+				if (data.y >= BOTTOM_CUTOFF && data.y <= TOP_CUTOFF) {
 					startLookTimer = Number.POSITIVE_INFINITY;
 					lookDirection = null;
-				}else if (data.x >= LEFT_CUTOFF ) {
+				}
+				if (data.x >= LEFT_CUTOFF && data.x < RIGHT_CUTOFF) {
 					startSideLookTimer = Number.POSITIVE_INFINITY;
 					sideLookDirection = null;
 				}
 
-				if (startSideLookTimer + BACK_LOOK_DELAY < timestamp) {
+				if (startSideLookTimer + SIDE_LOOK_DELAY < timestamp) {
 					if (sideLookDirection === "LEFT") {
 						window.history.back();
 						sideLookDirection = "RESET";
-
+					}
+					if (sideLookDirection === "RIGHT") {
+						// add commands
+						console.log('should click here')
+						document.getElementById("nextPage").click();
+						sideLookDirection = "RESET";
 					}
 				}
 
 				// Looking to see if direcion is found
 				if (startLookTimer + LOOK_DELAY < timestamp) {
 					if (lookDirection === "TOP") {
+						//controll options for each page
+						if (pageID === "MainAppPage") {
+						} else if (pageID === "MainMenuPage") {
+						} else if (pageID === "loginPage") {
+						}
 						window.scrollBy({ top: 300, behavior: "smooth" });
 						startLookTimer = Number.POSITIVE_INFINITY;
-						lookDirection = null;
+						lookDirection = "RESET";
 					} else if (lookDirection === "BOTTOM") {
 						window.scrollBy({ top: -300, behavior: "smooth" });
 						startLookTimer = Number.POSITIVE_INFINITY;
-						lookDirection = null;
+						lookDirection = "RESET";
 					}
 				}
 			})
@@ -106,6 +123,9 @@ class WebGazeLoader extends React.Component {
 WebGazeLoader.contextType = WebGazeContext;
 
 function GazeApp() {
+	pageID = useSelector((state) => state.PageID.id);
+	console.log("gazeApp at pageid: " + pageID );
+
 	return (
 		<div className="App">
 			<WebGazeLoader />
