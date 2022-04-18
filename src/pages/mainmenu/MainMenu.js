@@ -1,40 +1,48 @@
 import React from "react";
 import AppBar from "../resourses/AppBar";
-import { Button, Box, Container } from "@mui/material";
-// import { Input } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { set } from "../../features/PageID/PageIDSlice";
 import Carrusel from "./Carrusel";
-import Typography from "@mui/material/Typography";
 import "./MainMenu.css";
+
+
 
 export default function MainMenu() {
 	var pageID = "MainMenuPage";
 	const dispatch = useDispatch();
 	dispatch(set(pageID));
+	console.log(pageID)
 
 	return (
-		<div class="body">
+		<div className="body">
 			<Container>
-				<div class="center">
+				<div className="center">
 					<AppBar />
 
 					<hr />
-					<Button href="/" variant="outlined" size="large">
+					{/* <Button href="" variant="outlined" size="large">
+						
 						Go Back
-					</Button>
-					<hr />
+					</Button> */}
+					
 					<Button
+						id="main-choose-btn"						
+						href="/readerApp"
 						size="large"
 						variant="outlined"
 						sx={{
-							marginY: 2,
+							marginY: 0,
 							marginX: "25%",
 							bgcolor: "background.default",
 						}}>
-						Look Down to Choose
+						Choose (Focus UP)
 					</Button>
-					<Carrusel />
+					<hr/>
+					<Carrusel className="center" sx={{
+							marginY: 0,
+							marginX: "25%",
+						}} ></Carrusel>
 					
 				</div>
 			</Container>

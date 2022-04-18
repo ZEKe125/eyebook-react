@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Document, Page } from "react-pdf";
 // import stoic_book from "./books/stoic.pdf";
 import  Button from "@mui/material/Button";
+import { Container, Paper } from "@mui/material";
+import './pdfView.css';
 
 export default function SinglePage(props) {
   const [numPages, setNumPages] = useState(null);
@@ -26,15 +28,19 @@ export default function SinglePage(props) {
 
   const { pdf } = props;
 
+  
+
   return (
     <>
+    <Container className="center">
       <Document
         file={pdf}
         options={{ workerSrc: "/pdf.worker.js" }}
         onLoadSuccess={onDocumentLoadSuccess}
       >
-        <Page pageNumber={pageNumber} />
-        <Page pageNumber={pageNumber+1} />
+        <Paper elevation={12}><Page pageNumber={pageNumber} /></Paper>
+        <hr/>
+        <Paper elevation={12}><Page pageNumber={pageNumber + 1 } /></Paper>
       </Document>
       <div>
         <p>
@@ -53,6 +59,7 @@ export default function SinglePage(props) {
           Next (Focus Right)
         </Button>
       </div>
+      </Container>
     </>
   );
 }

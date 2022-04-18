@@ -2,9 +2,11 @@
     margin: auto;
     width: 80%;
     padding: 10px;
+    margin-left: 10%;
   }
 
 .body {
     margin-left: 250px;
     font-family: 'Roboto', sans-serif;
+    
 }

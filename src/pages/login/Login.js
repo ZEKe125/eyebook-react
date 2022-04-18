@@ -46,7 +46,7 @@ export default function LogIn() {
 
 	
 	// const page = 'login';
-	// console.log(page);
+	console.log(pageID);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -105,12 +105,13 @@ export default function LogIn() {
 						/>
 						{/* <Link to= "/"> */}
 						<Button
-							href="/"
+							href ="/MainMenu"
+							id = 'login-btn'
 							type="submit"
 							fullWidth
 							variant="contained"
 							sx={{ mt: 3, mb: 2 }}>
-							Sign In
+							Sign In (Focus Right to Bypass)
 						</Button>
 						{/* </Link> */}
 						<Grid container>
