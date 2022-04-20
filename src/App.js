@@ -1,13 +1,12 @@
 import "./App.css";
 import React, { useEffect } from "react";
-// import { Link } from "react-router-dom";
-import { useSelector
-	// , useDispatch 
+import ApplicationBar from "./pages/resourses/AppBar";
+import {
+	useSelector,
+	// , useDispatch
 } from "react-redux";
-// import { set } from "./features/PageID/PageIDSlice";
-// import GazeApp from "./pages/readerApp/GazeApp";
-
-
+import Container from "@mui/material/Container";
+import "./App.css";
 
 // Constants for determining when to scroll up or down
 var TOP_CUTOFF = window.innerHeight / 4;
@@ -32,6 +31,7 @@ var pageID;
 // "readerAppPage";
 
 function App() {
+	const bookValue = useSelector((state) => state.ChooseBook.value);
 	pageID = useSelector((state) => state.PageID.id);
 
 	useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
 				if (data == null) {
 					return;
 				}
-	
+
 				if (data.y < TOP_CUTOFF && lookDirection !== "TOP") {
 					// console.log("looking at top");
 					startLookTimer = timestamp;
@@ -59,7 +59,7 @@ function App() {
 					// console.log("left");
 					startSideLookTimer = timestamp;
 					sideLookDirection = "LEFT";
-				}else if (data.x > RIGHT_CUTOFF && sideLookDirection !== "RIGHT") {
+				} else if (data.x > RIGHT_CUTOFF && sideLookDirection !== "RIGHT") {
 					// console.log("right");
 					startSideLookTimer = timestamp;
 					sideLookDirection = "RIGHT";
@@ -75,32 +75,37 @@ function App() {
 
 				if (startSideLookTimer + SIDE_LOOK_DELAY < timestamp) {
 					if (sideLookDirection === "LEFT") {
-						console.log('left')
+						console.log("left");
 
 						if (pageID === "MainMenuPage") {
 							// toggle next book button
 							document.getElementById("backBook").click();
-						}else{
-							window.history.back();
+						} else {
+							if (pageID === "readerAppPage") {
+								// toggle next book button
+								document.getElementById("readerBack").click();
+							} else {
+								window.history.back();
+							}
 						}
-						window.history.back();
+						// window.history.back();
 						sideLookDirection = "RESET";
 						startSideLookTimer = Number.POSITIVE_INFINITY;
 					}
 					if (sideLookDirection === "RIGHT") {
 						// add commands
-						console.log('right')
-							//controll options for each page
-							if (pageID === "readerAppPage") {
-								 document.getElementById("nextPage").click();
-							} else if (pageID === "MainMenuPage") {
-								// toggle next book button
-								document.getElementById("nextBook").click();
-							} else if (pageID === "loginPage") {
-								document.getElementById("login-btn").click();
-								// nothing
-							}
-	
+						console.log("right");
+						//controll options for each page
+						if (pageID === "readerAppPage") {
+							document.getElementById("nextPage").click();
+						} else if (pageID === "MainMenuPage") {
+							// toggle next book button
+							document.getElementById("nextBook").click();
+						} else if (pageID === "loginPage") {
+							document.getElementById("login-btn").click();
+							// nothing
+						}
+
 						startSideLookTimer = Number.POSITIVE_INFINITY;
 						sideLookDirection = "RESET";
 					}
@@ -109,8 +114,7 @@ function App() {
 				// Looking to see if direcion is found
 				if (startLookTimer + LOOK_DELAY < timestamp) {
 					if (lookDirection === "TOP") {
-						console.log('top')
-
+						console.log("top");
 
 						//controll options for each page
 						if (pageID === "readerAppPage") {
@@ -125,35 +129,35 @@ function App() {
 
 						startLookTimer = Number.POSITIVE_INFINITY;
 						lookDirection = "RESET";
-
 					} else if (lookDirection === "BOTTOM") {
-						console.log('bottom')
+						console.log("bottom");
 
 						//controll options for each page
 						if (pageID === "readerAppPage") {
 							window.scrollBy({ top: 300, behavior: "smooth" });
 						} else if (pageID === "MainMenuPage") {
-							
 						} else if (pageID === "loginPage") {
 							// nothing
 						}
-
-
-
 
 						// window.scrollBy({ top: 300, behavior: "smooth" });
 						startLookTimer = Number.POSITIVE_INFINITY;
 						lookDirection = "RESET";
 					}
 				}
-
-
-				
 			})
 			.begin();
 	}, []);
 
-	return <div className="App"></div>;
+	return (
+		<div className="body">
+			<Container>
+				<div className="center">
+					<ApplicationBar currentPage={`${pageID} `} />
+				</div>
+			</Container>
+		</div>
+	);
 }
 
 export default App;
