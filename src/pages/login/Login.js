@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -15,38 +15,16 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { set } from "../../features/PageID/PageIDSlice";
 
-
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
-
 const theme = createTheme();
 
+var pageID = "loginPage";
 
-
-var pageID = 'loginPage';
-	
 export default function LogIn() {
-	
 	const dispatch = useDispatch();
-  	dispatch(set(pageID));
+	dispatch(set(pageID));
 
-	
 	// const page = 'login';
-	console.log(pageID);
+	// console.log(pageID);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -60,7 +38,7 @@ export default function LogIn() {
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
-				
+
 				<Box
 					sx={{
 						marginTop: 8,
@@ -103,32 +81,27 @@ export default function LogIn() {
 							control={<Checkbox value="remember" color="primary" />}
 							label="Remember me"
 						/>
-						{/* <Link to= "/"> */}
-						<Button
-							href ="/MainMenu"
-							id = 'login-btn'
-							type="submit"
-							fullWidth
-							variant="contained"
-							sx={{ mt: 3, mb: 2 }}>
-							Sign In (Focus Right to Bypass)
-						</Button>
-						{/* </Link> */}
+
+						<Link to="/MainMenu" style={{ textDecoration: 'none' }}>
+							<Button
+								// href ="/MainMenu"
+								id="login-btn"
+								type="submit"
+								fullWidth
+								variant="contained"
+								sx={{ mt: 3, mb: 2 }}>
+								Sign In (Focus Right to Bypass)
+							</Button>
+						</Link>
+
 						<Grid container>
 							<Grid item xs>
-								<Link href="#" variant="body2">
-									Forgot password?
-								</Link>
+								Forgot password?
 							</Grid>
-							<Grid item>
-								<Link href="#" variant="body2">
-									{"Don't have an account? Sign Up"}
-								</Link>
-							</Grid>
+							<Grid item></Grid>
 						</Grid>
 					</Box>
 				</Box>
-				<Copyright sx={{ mt: 8, mb: 4 }} />
 			</Container>
 		</ThemeProvider>
 	);

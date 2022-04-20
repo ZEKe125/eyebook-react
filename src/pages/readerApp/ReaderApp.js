@@ -1,44 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Main.css";
 import Button from "@mui/material/Button";
 import SinglePagePDFViewer from "../../pdf/SinglePage";
-import books from "../../library/alice.pdf"
+import stoic from "../../library/stoic.pdf";
+import alice from "../../library/alice.pdf";
+import illiad from "../../library/illiad.pdf";
+import pride from "../../library/pride.pdf";
+import twocities from "../../library/twocities.pdf";
+
 import Container from "@mui/material/Container";
 import { useDispatch } from "react-redux";
 import { set } from "../../features/PageID/PageIDSlice";
-import AppBar from "../resourses/AppBar";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+const pageID = "readerAppPage";
+var bookValue = -1;
+var bookTitle;
 
 
-const thisPageID = "readerAppPage";
+const book = [stoic, alice, illiad, pride, twocities];
+function selectTitle(){
+	if(bookValue === 0 ){
+		bookTitle ="The Daily Stoic"
+	}
+	if(bookValue === 1 ){
+		bookTitle ="Alice in Wonderland"
+	}
+	if(bookValue === 2 ){
+		bookTitle ="The Illiad"
+	}
+	if(bookValue === 3 ){
+		bookTitle = "Pride and Prejudice"
+	}
+	if(bookValue === 4 ){
+		bookTitle ="A Tale of Two Cities"
+	}
+}
 
 
-
-function ReaderApp({ book_name = 'alice' }) {
+function ReaderApp() {
 	const dispatch = useDispatch();
-	dispatch(set(thisPageID));
-	console.log(thisPageID);
-
-
-	//  async import (`../../../public/library/${book_name}.pdf`)
-	//  const book = lazy(() => import(`../../../public/library/${book_name}.pdf`));
-
+	dispatch(set(pageID));
+	// console.log(pageID);
+	bookValue = useSelector((state) => state.ChooseBook.value);
+	// console.log(`bookValue is:  ${bookValue}`)
+	selectTitle();
+	
 	return (
 		<div className="body">
 			<Container>
 				<div className="center">
-					<AppBar />
-
 					<hr />
-					<Button href="/MainMenu" variant="outlined" size="large">
-						Go Back (Focus Left)
-					</Button>
+					<Link to="/MainMenu" style={{ textDecoration: "none" }}>
+						<Button id="readerBack" variant="outlined" size="large">
+							Go Back (Focus Left)
+						</Button>
+					</Link>
 					<hr />
 
 					<h1>New EyeBook Reader</h1>
-					<h2>the revolution has begun</h2>
+					<h2>TITLE: {bookTitle}</h2>
 
 					<div className="center">
-						<SinglePagePDFViewer pdf={books} />
+						<SinglePagePDFViewer pdf={book[bookValue]} />
 						{/* <AllPagesPDFViewer pdf = {stoic_book}/> */}
 					</div>
 				</div>

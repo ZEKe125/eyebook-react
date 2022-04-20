@@ -20,9 +20,9 @@ root.render(
 		<Routes>
 			{/* add more routes */}
 			<Route exact path="/" element={<Login />}  >
-				{/* { <Route exact path="/login" element={<Login />} />} */}
+		
 			</Route>
-			{/* <Route exact path="/GazeApp" element={<GazeApp />} /> */}
+			
 			<Route exact path="/readerApp" element={<ReaderApp/>} />
 			<Route exact path="/MainMenu" element={<MainMenu />} />
 			<Route exact path="/login" element={<Login />} />
