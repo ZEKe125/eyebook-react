@@ -18,26 +18,24 @@ const pageID = "readerAppPage";
 var bookValue = -1;
 var bookTitle;
 
-
 const book = [stoic, alice, illiad, pride, twocities];
-function selectTitle(){
-	if(bookValue === 0 ){
-		bookTitle ="The Daily Stoic"
+function selectTitle() {
+	if (bookValue === 0) {
+		bookTitle = "The Daily Stoic";
 	}
-	if(bookValue === 1 ){
-		bookTitle ="Alice in Wonderland"
+	if (bookValue === 1) {
+		bookTitle = "Alice in Wonderland";
 	}
-	if(bookValue === 2 ){
-		bookTitle ="The Illiad"
+	if (bookValue === 2) {
+		bookTitle = "The Illiad";
 	}
-	if(bookValue === 3 ){
-		bookTitle = "Pride and Prejudice"
+	if (bookValue === 3) {
+		bookTitle = "Pride and Prejudice";
 	}
-	if(bookValue === 4 ){
-		bookTitle ="A Tale of Two Cities"
+	if (bookValue === 4) {
+		bookTitle = "A Tale of Two Cities";
 	}
 }
-
 
 function ReaderApp() {
 	const dispatch = useDispatch();
@@ -46,7 +44,7 @@ function ReaderApp() {
 	bookValue = useSelector((state) => state.ChooseBook.value);
 	// console.log(`bookValue is:  ${bookValue}`)
 	selectTitle();
-	
+
 	return (
 		<div className="body">
 			<Container>
@@ -61,10 +59,14 @@ function ReaderApp() {
 
 					<h1>New EyeBook Reader</h1>
 					<h2>TITLE: {bookTitle}</h2>
+					
+						<h4>Book Sourced by: <a target="_blank" href="https://www.gutenberg.org/">Gutenberg Project</a></h4>
+						
+				
 
 					<div className="center">
 						<SinglePagePDFViewer pdf={book[bookValue]} />
-						{/* <AllPagesPDFViewer pdf = {stoic_book}/> */}
+						
 					</div>
 				</div>
 			</Container>

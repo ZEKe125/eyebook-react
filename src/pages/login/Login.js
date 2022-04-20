@@ -8,12 +8,13 @@ import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+// import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { set } from "../../features/PageID/PageIDSlice";
+import FaceIcon from '@mui/icons-material/Face';
 
 const theme = createTheme();
 
@@ -47,7 +48,7 @@ export default function LogIn() {
 						alignItems: "center",
 					}}>
 					<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-						<LockOutlinedIcon />
+						<FaceIcon />
 					</Avatar>
 					<Typography component="h1" variant="h5">
 						Sign in
