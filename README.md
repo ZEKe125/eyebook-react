@@ -3,8 +3,12 @@
 
 ## Description of ReaderApp
 Small WebApplication built using React.js, Redux, Matrial UI, and WebGazer.
-the Application is intened for people who would like to read and have automatic scrolling
-as eyes focus on the bottom of the page, the application scrolls. 
+The Application uses a built-in or external Webcam for Eye Tracking.
+If Camera is unavailable the application is also functional with mouse input.
+The Application is intened for people who would like to read and have automatic scrolling
+as eyes focus on the bottom of the page, the application scrolls. The application has various 
+fuctions that make use of eyetracking. The application is loaded with a small library of 
+publically of available books for our users convenience.
 
 <img src="https://user-images.githubusercontent.com/82134360/165676977-79975f44-02db-4e75-a58d-1f6198cb3f92.png" height="200" ><img src="https://user-images.githubusercontent.com/82134360/165677009-6ed5d0c5-a507-4325-b1b0-01d3c7bd5fad.png" height="200" ><img src="https://user-images.githubusercontent.com/82134360/165677042-a86a7785-c6fd-43db-a57b-155fbb6a011a.png" height="200" >
 
