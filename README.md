@@ -1,8 +1,12 @@
 # Getting Started with EYEBOOK READER
-
+![image](https://user-images.githubusercontent.com/82134360/165676324-e06e9b5c-fe3d-46c0-99c1-1d71c644cc17.png)
+![image](https://user-images.githubusercontent.com/82134360/165676402-40db2964-b12e-4a1f-a4b8-cca6b5b6a102.png)
+![image](https://user-images.githubusercontent.com/82134360/165676451-754cb94f-8d2f-49ce-899c-f4ad0cac64d8.png)
+![image](https://user-images.githubusercontent.com/82134360/165676494-30ebf699-828d-4981-a8c8-33d7929a9e8b.png)
+<img src="https://user-images.githubusercontent.com/82134360/165676324-e06e9b5c-fe3d-46c0-99c1-1d71c644cc17.png" height="150" > <img src="https://user-images.githubusercontent.com/82134360/165676402-40db2964-b12e-4a1f-a4b8-cca6b5b6a102.png" height="150" ><img src="https://user-images.githubusercontent.com/82134360/165676451-754cb94f-8d2f-49ce-899c-f4ad0cac64d8.png" height="150" ><img src="https://user-images.githubusercontent.com/82134360/165676494-30ebf699-828d-4981-a8c8-33d7929a9e8b.png" height="150" >
 
 ## Description of ReaderApp
-Small WebApplication built using React.js, Matrial UI, and WebGazer.
+Small WebApplication built using React.js, Redux, Matrial UI, and WebGazer.
 the Application is intened for people who would like to read and have automatic scrolling
 as eyes focus on the bottom of the page, the application scrolls. 
 
