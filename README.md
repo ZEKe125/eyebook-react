@@ -7,10 +7,10 @@ the Application is intened for people who would like to read and have automatic 
 as eyes focus on the bottom of the page, the application scrolls. 
 
 ## Functions with EYETRACKING
-### * if no mouse bypass login 
-### * book selection (left and right)
-### <li> auto scroll </li>
-### turn the page on a book
+### <li>no mouse bypass login </li>
+### <li>book selection (left and right)</li>
+### <li>auto scroll </li>
+### <li>turn the page on a book</li>
 
 
 ## Sample Screenshots
