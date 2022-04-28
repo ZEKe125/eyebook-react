@@ -5,6 +5,13 @@
 Small WebApplication built using React.js, Redux, Matrial UI, and WebGazer.
 the Application is intened for people who would like to read and have automatic scrolling
 as eyes focus on the bottom of the page, the application scrolls. 
+![image](https://user-images.githubusercontent.com/82134360/165676977-79975f44-02db-4e75-a58d-1f6198cb3f92.png)
+![image](https://user-images.githubusercontent.com/82134360/165677009-6ed5d0c5-a507-4325-b1b0-01d3c7bd5fad.png)
+![image](https://user-images.githubusercontent.com/82134360/165677042-a86a7785-c6fd-43db-a57b-155fbb6a011a.png)
+![image](https://user-images.githubusercontent.com/82134360/165677151-3f4f94c5-8533-4a95-b63b-1b2780a68f3c.png)
+
+
+
 
 ## Functions with EYETRACKING
  <li>no mouse bypass login </li>
