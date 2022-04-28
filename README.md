@@ -28,6 +28,7 @@ In the project directory, you can run:
 
 
 
+<img src="https://user-images.githubusercontent.com/82134360/165674275-39a9a27e-b3e6-42ce-b45e-45526139fa12.PNG" width="100" >
 
 ![1](https://user-images.githubusercontent.com/82134360/165674275-39a9a27e-b3e6-42ce-b45e-45526139fa12.PNG | width=100)
 
