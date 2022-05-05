@@ -10,3 +10,11 @@
 	margin-left: 250px;
 	font-family: "Roboto", sans-serif;
 }
+
+#webgazerGazeDot {
+	background: rgb(151, 151, 250) !important;
+	height: 100px !important;
+	width: 100px !important;
+	opacity: 0.3 !important;
+	border-radius: 100% !important;
+}

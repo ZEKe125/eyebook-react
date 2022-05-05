@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Main.css";
 import Button from "@mui/material/Button";
 import SinglePagePDFViewer from "../../pdf/SinglePage";
@@ -59,14 +59,19 @@ function ReaderApp() {
 
 					<h1>New EyeBook Reader</h1>
 					<h2>TITLE: {bookTitle}</h2>
-					
-						<h4>Book Sourced by: <a target="_blank" href="https://www.gutenberg.org/">Gutenberg Project</a></h4>
-						
-				
+
+					<h4>
+						Book Sourced by:{" "}
+						<a
+							target="_blank"
+							rel="noreferrer"
+							href="https://www.gutenberg.org/">
+							Gutenberg Project
+						</a>
+					</h4>
 
 					<div className="center">
 						<SinglePagePDFViewer pdf={book[bookValue]} />
-						
 					</div>
 				</div>
 			</Container>

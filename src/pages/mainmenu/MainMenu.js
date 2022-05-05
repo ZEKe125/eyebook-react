@@ -1,28 +1,21 @@
-import React ,{useEffect}from "react";
+import React, { useEffect } from "react";
 import { Button, Container } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { set } from "../../features/PageID/PageIDSlice";
 import Carrusel from "./Carrusel";
 import "./MainMenu.css";
 import { Link } from "react-router-dom";
-import {set as reset} from "../../features/ChooseBook/ChooseBookSlice";
-
-
-
+import { set as reset } from "../../features/ChooseBook/ChooseBookSlice";
 
 export default function MainMenu() {
 	var pageID = "MainMenuPage";
 	const dispatch = useDispatch();
 	dispatch(set(pageID));
 	// console.log(pageID);
-	
 
 	useEffect(() => {
 		dispatch(reset(0));
-		
-	 
-	}, [])
-
+	}, [dispatch]);
 
 	return (
 		<div className="body">
@@ -30,10 +23,9 @@ export default function MainMenu() {
 				<div className="center">
 					<hr />
 
-					<Link to="/readerApp" style={{ textDecoration: 'none' }}>
+					<Link to="/readerApp" style={{ textDecoration: "none" }}>
 						<Button
 							id="main-choose-btn"
-							// href="/readerApp"
 							size="large"
 							variant="outlined"
 							sx={{

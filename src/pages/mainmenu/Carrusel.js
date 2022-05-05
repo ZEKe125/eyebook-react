@@ -10,7 +10,6 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useDispatch } from "react-redux";
 import {
-	set,
 	increment,
 	decrement,
 } from "../../features/ChooseBook/ChooseBookSlice";
@@ -61,10 +60,10 @@ function Carrusel() {
 
 	function handleBookNext() {
 		dispatch(increment());
-	};
-	function handleBookBack()  {
+	}
+	function handleBookBack() {
 		dispatch(decrement());
-	};
+	}
 
 	// const handleStepChange = (step) => {
 	//   setActiveStep(step)
@@ -129,7 +128,9 @@ function Carrusel() {
 									handleNext();
 									handleBookNext();
 								}}
-								disabled={activeStep === maxSteps - 1}> Next (Focus Right)
+								disabled={activeStep === maxSteps - 1}>
+								{" "}
+								Next (Focus Right)
 								{theme.direction === "rtl" ? (
 									<KeyboardArrowLeft />
 								) : (
@@ -145,7 +146,6 @@ function Carrusel() {
 									handleBack();
 									handleBookBack();
 								}}
-								
 								disabled={activeStep === 0}>
 								{theme.direction === "rtl" ? (
 									<KeyboardArrowRight />

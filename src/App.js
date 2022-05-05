@@ -1,18 +1,15 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import ApplicationBar from "./pages/resourses/AppBar";
-import {
-	useSelector,
-	// , useDispatch
-} from "react-redux";
+import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import "./App.css";
 
 // Constants for determining when to scroll up or down
-var TOP_CUTOFF = window.innerHeight / 4;
-var BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 4;
-var LEFT_CUTOFF = window.innerWidth / 4;
-var RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 4;
+var TOP_CUTOFF = window.innerHeight / 5;
+var BOTTOM_CUTOFF = window.innerHeight - window.innerHeight / 5;
+var LEFT_CUTOFF = window.innerWidth / 5;
+var RIGHT_CUTOFF = window.innerHeight - window.innerHeight / 5;
 
 // Constant for determining how long they need to look in order to scroll
 const LOOK_DELAY = 1350;
@@ -31,7 +28,7 @@ var pageID;
 // "readerAppPage";
 
 function App() {
-	const bookValue = useSelector((state) => state.ChooseBook.value);
+	//
 	pageID = useSelector((state) => state.PageID.id);
 
 	useEffect(() => {
@@ -64,25 +61,41 @@ function App() {
 					startSideLookTimer = timestamp;
 					sideLookDirection = "RIGHT";
 				}
-				if (data.y <= BOTTOM_CUTOFF && data.y >= TOP_CUTOFF) {
+
+				// GAZE RESETS
+				if (data.y <= BOTTOM_CUTOFF && lookDirection === "BOTTOM") {
 					startLookTimer = Number.POSITIVE_INFINITY;
 					lookDirection = null;
+					console.log("reset1");
 				}
-				if (data.x >= LEFT_CUTOFF && data.x < RIGHT_CUTOFF) {
-					startSideLookTimer = Number.POSITIVE_INFINITY;
-					sideLookDirection = null;
+				if (data.y >= TOP_CUTOFF && lookDirection === "TOP") {
+					startLookTimer = Number.POSITIVE_INFINITY;
+					lookDirection = null;
+					console.log("reset2");
 				}
 
+				if (data.x >= LEFT_CUTOFF && sideLookDirection === "LEFT") {
+					startSideLookTimer = Number.POSITIVE_INFINITY;
+					sideLookDirection = null;
+					console.log("reset3");
+				}
+				if (data.x < RIGHT_CUTOFF && sideLookDirection === "RIGHT") {
+					startSideLookTimer = Number.POSITIVE_INFINITY;
+					sideLookDirection = null;
+					console.log("reset4");
+				}
+
+				// COMMANDS FOR EACH PAGE
 				if (startSideLookTimer + SIDE_LOOK_DELAY < timestamp) {
 					if (sideLookDirection === "LEFT") {
 						console.log("left");
 
 						if (pageID === "MainMenuPage") {
-							// toggle next book button
+							// toggle PREV book button
 							document.getElementById("backBook").click();
 						} else {
 							if (pageID === "readerAppPage") {
-								// toggle next book button
+								// CLICK BACK button
 								document.getElementById("readerBack").click();
 							} else {
 								window.history.back();
