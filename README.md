@@ -31,8 +31,9 @@ publically of available books for our users convenience.
 
 In the project directory, you can run:
 ## Available Scripts
+some users have had trouble with npm 
+if you experience this try the "yarn" equivalent yarn install.
 
 ### `npm install`
-
 ### `npm start`
 
