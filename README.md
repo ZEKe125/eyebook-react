@@ -34,6 +34,6 @@ In the project directory, you can run:
 some users have had trouble with npm 
 if you experience this try the "yarn" equivalent `yarn install`.
 
-### `npm install`
+### `npm install or npm i`
 ### `npm start`
 
