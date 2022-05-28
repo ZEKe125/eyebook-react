@@ -2,13 +2,9 @@
 <img src="https://user-images.githubusercontent.com/82134360/165676324-e06e9b5c-fe3d-46c0-99c1-1d71c644cc17.png" height="150" > <img src="https://user-images.githubusercontent.com/82134360/165676402-40db2964-b12e-4a1f-a4b8-cca6b5b6a102.png" height="150" ><img src="https://user-images.githubusercontent.com/82134360/165676451-754cb94f-8d2f-49ce-899c-f4ad0cac64d8.png" height="150" ><img src="https://user-images.githubusercontent.com/82134360/165676494-30ebf699-828d-4981-a8c8-33d7929a9e8b.png" height="150" >
 
 ## Description of ReaderApp
-Small WebApplication built using React.js, Redux, Matrial UI, and WebGazer API.
-The Application uses a built-in or external Webcam for Eye Tracking.
-If Camera is unavailable the application is also functional with mouse input.
-The Application is intened for people who would like to read and have automatic scrolling
-as eyes focus on the bottom of the page, the application scrolls. The application has various 
-fuctions that make use of eyetracking. The application is loaded with a small library of 
-publically of available books for our users convenience.
+Live Project: https://eyebook-react-zeke125.vercel.app/
+Small Web Application built as Proof of Concept using React.js, Redux, Material UI, and WebGazer API. The Application uses a built-in or external Webcam for Eye Tracking. If the Camera is unavailable the application is also functional with mouse input. The Application is intended for people who would like to read and have automatic scrolling as eyes focus on the bottom of the page, the application scrolls. The application has various functions that make use of eye-tracking. The application is loaded with a small library of publically available books for our user's convenience.
+
 
 <img src="https://user-images.githubusercontent.com/82134360/165676977-79975f44-02db-4e75-a58d-1f6198cb3f92.png" height="200" ><img src="https://user-images.githubusercontent.com/82134360/165677009-6ed5d0c5-a507-4325-b1b0-01d3c7bd5fad.png" height="200" ><img src="https://user-images.githubusercontent.com/82134360/165677042-a86a7785-c6fd-43db-a57b-155fbb6a011a.png" height="200" >
 
